@@ -44,9 +44,8 @@ public class Car {
         return moveCount;
     }
 
-    public final void moveOrStay() {
-        int randomValue = Randoms.pickNumberInRange(0, 9);
-        if (randomValue >= 4) {
+    public final void moveOrStay(boolean moveSignal) {
+        if (moveSignal) {
             ++moveCount;
             slashForMoveCount.append("-");
         }

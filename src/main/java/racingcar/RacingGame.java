@@ -1,8 +1,8 @@
 package racingcar;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class RacingGame {
     private List<Car> cars = new ArrayList<>();
@@ -24,7 +24,7 @@ public class RacingGame {
         StringBuilder resultSheet = new StringBuilder();
         while (this.tryCount > 0) {
             for (Car car : cars) {
-                car.moveOrStay();
+                car.moveOrStay(sendMoveSignalWithChance());
                 resultSheet.append(car.printMoveCount());
             }
             resultSheet.append('\n');
@@ -44,6 +44,11 @@ public class RacingGame {
             System.out.print(winners.get(i).getCarName() + ", ");
         }
         System.out.print(winners.getLast().getCarName());
+    }
+
+    private boolean sendMoveSignalWithChance() {
+        int randomValue = Randoms.pickNumberInRange(0, 9);
+        return randomValue >= 4;
     }
 
     private void sortCarsByMoveCount() {
